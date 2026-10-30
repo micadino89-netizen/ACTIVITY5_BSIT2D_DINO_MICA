@@ -1,0 +1,77 @@
+===== python test_driver.py =====
+--- ArrayStack overflow ---
+Full? True [3, 2, 1]
+push(4) on full (overflow) -> OverflowError: Stack overflow: cannot push to a full stack
+
+--- ArrayStack ---
+After push A, B, C (top->bottom): ['C', 'B', 'A']
+pop() -> 'C'
+peek() -> 'B'
+State: ['B', 'A']
+pop() -> 'B'
+pop() -> 'A'
+pop() on empty (underflow) -> IndexError: Stack underflow: cannot pop from an empty stack
+peek() on empty -> IndexError: Stack is empty: nothing to peek
+
+--- LinkedStack ---
+After push A, B, C (top->bottom): ['C', 'B', 'A']
+pop() -> 'C'
+peek() -> 'B'
+State: ['B', 'A']
+pop() -> 'B'
+pop() -> 'A'
+pop() on empty (underflow) -> IndexError: Stack underflow: cannot pop from an empty stack
+peek() on empty -> IndexError: Stack is empty: nothing to peek
+
+--- ArrayQueue wrap-around (capacity 4) ---
+Full: ['A', 'B', 'C', 'D'] front = 0 size = 4
+enqueue('E') on full (overflow) -> OverflowError: Queue overflow: cannot enqueue to a full queue
+dequeue() -> 'A'
+dequeue() -> 'B'
+After dequeue x2 and enqueue E, F:
+Raw array: ['E', 'F', 'C', 'D'] front = 2 size = 4
+Logical order (front->rear): ['C', 'D', 'E', 'F']
+
+--- ArrayQueue ---
+After enqueue A, B, C (front->rear): ['A', 'B', 'C']
+dequeue() -> 'A'
+peek_front() -> 'B'
+dequeue() -> 'B'
+dequeue() -> 'C'
+dequeue() on empty (underflow) -> IndexError: Queue underflow: cannot dequeue from an empty queue
+
+--- LinkedQueue ---
+After enqueue A, B, C (front->rear): ['A', 'B', 'C']
+dequeue() -> 'A'
+peek_front() -> 'B'
+dequeue() -> 'B'
+dequeue() -> 'C'
+dequeue() on empty (underflow) -> IndexError: Queue underflow: cannot dequeue from an empty queue
+
+--- LinkedQueue rear reset ---
+front: None rear: None
+After enqueue(2): [2]
+
+===== python applications.py =====
+=== Balanced parentheses ===
+'()'            -> balanced
+'([]{})'        -> balanced
+'{[()]}'        -> balanced
+'(]'            -> NOT balanced
+'((())'         -> NOT balanced
+'())('          -> NOT balanced
+'a(b[c]{d})e'   -> balanced
+''              -> balanced
+
+=== Print queue simulation ===
+Enqueued job DOC-101 (5 pages)
+Enqueued job DOC-102 (12 pages)
+Enqueued job DOC-103 (1 pages)
+Enqueued job DOC-104 (8 pages)
+
+Printing in FIFO order:
+  #1: printing DOC-101 (5 pages) | total pages printed: 5
+  #2: printing DOC-102 (12 pages) | total pages printed: 17
+  #3: printing DOC-103 (1 pages) | total pages printed: 18
+  #4: printing DOC-104 (8 pages) | total pages printed: 26
+All jobs printed.
