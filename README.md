@@ -14,7 +14,7 @@ Implementations of a stack and a queue, each built two ways from first principle
 | `main.py` | Menu-driven program for all four implementations |
 | `applications.py` | Balanced-parentheses checker (stack) and print-queue simulation (queue) |
 | `test_driver.py` | Demo of all classes, including underflow, overflow and wrap-around |
-| `sample_runs.txt` | Output of the test driver and application exercise |
+| `sample_runs` | Output of the test driver and application exercise |
 | `analysis.md` | Answer to the analysis question |
 
 ## How to run
